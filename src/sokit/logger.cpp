@@ -10,7 +10,7 @@
 #include "setting.h"
 #include "logger.h"
 
-#define SET_MAX_LOGITM  100
+#define SET_MAX_LOGITM  9999
 #define SET_MAX_LOGTRM  30
 
 Logger::Logger(QObject *parent)
@@ -207,7 +207,7 @@ void Logger::output(const QString& title, const QString& info)
 	QTreeWidgetItem* it = new QTreeWidgetItem(0);
 	if (!it) return;
 
-	QString lab(QTime::currentTime().toString("HH:mm:ss "));
+    QString lab(QTime::currentTime().toString("HH:mm:ss.zzz "));
 	
 	lab += title;
 	lab += ' ';
@@ -225,7 +225,7 @@ void Logger::output(const QString& title, const QString& info)
 
 void Logger::output(const QString& title, const char* buf, quint32 len)
 {
-	QString lab(QTime::currentTime().toString("HH:mm:ss "));
+    QString lab(QTime::currentTime().toString("HH:mm:ss.zzz "));
 	
 	QTextStream out(&lab);
 
