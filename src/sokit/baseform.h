@@ -37,9 +37,10 @@ protected:
 	virtual bool initHotkeys() =0;
 	virtual void initConfig() =0;
 	virtual void saveConfig() =0;
-    virtual void kill(QStringList& /*list*/) {};
+    virtual void kill(QStringList& /*list*/) {}
 	virtual void send(const QString& data, const QString& dir) =0;
 
+    inline Logger* getLogger() {return &m_logger;}
 signals:
 	void output(const QString& info);
 	void output(const QString& title, const char* buf, quint32 len);

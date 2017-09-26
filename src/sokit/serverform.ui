@@ -26,7 +26,16 @@
    <property name="spacing">
     <number>5</number>
    </property>
-   <property name="margin">
+   <property name="leftMargin">
+    <number>5</number>
+   </property>
+   <property name="topMargin">
+    <number>5</number>
+   </property>
+   <property name="rightMargin">
+    <number>5</number>
+   </property>
+   <property name="bottomMargin">
     <number>5</number>
    </property>
    <item>
@@ -75,14 +84,14 @@
           <property name="sizeConstraint">
            <enum>QLayout::SetFixedSize</enum>
           </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <property name="horizontalSpacing">
            <number>5</number>
           </property>
           <property name="verticalSpacing">
            <number>8</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
           </property>
           <item row="0" column="2">
            <widget class="QLabel" name="lab2">
@@ -703,6 +712,32 @@
         <string notr="true">0</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Mark lines</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="editMarkingText"/>
      </item>
      <item>
       <spacer name="spc">

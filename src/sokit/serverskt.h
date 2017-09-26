@@ -17,7 +17,7 @@ public:
 	ServerSkt(QObject *parent=0);
 	virtual ~ServerSkt();
 
-	virtual QString name() const { return "General"; };
+    virtual QString name() const { return "General"; }
 
 	bool start(const QHostAddress& ip, quint16 port);
 	void kill(const QString& key);
@@ -25,8 +25,8 @@ public:
 
 	void send(const QString& key, const QString& data);
 
-	const QHostAddress& addr() const { return m_ip; };
-	quint16 port() const { return m_port; };
+    const QHostAddress& addr() const { return m_ip; }
+    quint16 port() const { return m_port; }
 
 signals:
 	void connOpen(const QString& key);
@@ -80,7 +80,7 @@ public:
 	ServerSktTcp(QObject *parent=0);
 	virtual ~ServerSktTcp();
 
-	virtual QString name() const { return "TCP"; };
+    virtual QString name() const { return "TCP"; }
 
 protected:
 	virtual bool open();
@@ -114,7 +114,7 @@ public:
 	ServerSktUdp(QObject *parent=0);
 	virtual ~ServerSktUdp();
 
-	virtual QString name() const { return "UDP"; };
+    virtual QString name() const { return "UDP"; }
 
 protected:
 	virtual bool open();

@@ -29,6 +29,7 @@ signals:
 public slots:
 	void output(const QString& info);
 	void output(const QString& title, const char* buf, quint32 len);
+    void updateMarkTxt(const QString& txt);
 
 private slots:
 	void ctxmenu(const QPoint& pos);
@@ -49,6 +50,8 @@ private:
     QCheckBox* m_chkWrite;
     QTreeWidget* m_treeOut;
     QPlainTextEdit* m_textOut;
+
+    QString m_markTxt;
 };
 
 #endif // __LOGGER_H__

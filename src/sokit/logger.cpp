@@ -38,7 +38,7 @@ void Logger::init(QTreeWidget* o, QCheckBox* w, QPlainTextEdit* d)
 		m_chkWrite->disconnect(this);
 
     m_treeOut = o;
-	m_textOut = d;
+    m_textOut = d;
     m_chkWrite = w;
 
 	if (m_treeOut && m_textOut && m_chkWrite)
@@ -188,6 +188,10 @@ QTreeWidgetItem* Logger::appendLogEntry(QTreeWidgetItem* p, const QString& t)
 	if (res)
 	{
 		res->setText(0, t);
+        if (m_markTxt != "" && t.contains(m_markTxt))
+        {
+            res->setBackgroundColor(0, Qt::red);
+        }
 
 		if (p)
 		{
@@ -204,9 +208,6 @@ QTreeWidgetItem* Logger::appendLogEntry(QTreeWidgetItem* p, const QString& t)
 
 void Logger::output(const QString& title, const QString& info)
 {
-	QTreeWidgetItem* it = new QTreeWidgetItem(0);
-	if (!it) return;
-
     QString lab(QTime::currentTime().toString("HH:mm:ss.zzz "));
 	
 	lab += title;
@@ -238,6 +239,7 @@ void Logger::output(const QString& title, const char* buf, quint32 len)
 	QTreeWidgetItem* it = appendLogEntry(0, lab);
 	if (it)
 	{
+        // add packet data's hex view as child
 		appendLogEntry(it, hex);
 
 		pack();
@@ -246,4 +248,23 @@ void Logger::output(const QString& title, const char* buf, quint32 len)
 	out << '\n' << hex << '\n' << '\n';
 
 	writeLogFile(lab);
+}
+
+void Logger::updateMarkTxt(const QString& txt)
+{
+    m_markTxt = txt;
+    QTreeWidgetItemIterator it(m_treeOut);
+
+    while (*it)
+    {
+        if (m_markTxt != "" && (*it)->text(0).contains(m_markTxt))
+        {
+            (*it)->setBackgroundColor(0, Qt::red);
+        }
+        else
+        {
+            (*it)->setBackgroundColor(0, Qt::white);
+        }
+        ++it;
+    }
 }

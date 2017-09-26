@@ -12,14 +12,14 @@ public:
 	ClientSkt(QObject *parent=0);
 	virtual ~ClientSkt();
 
-	virtual QString name() const { return "General"; };
+    virtual QString name() const { return "General"; }
 
 	bool plug(const QHostAddress& ip, quint16 port);
 	void unplug();
 	void send(const QString& data);
 
-	const QHostAddress& addr() const { return m_ip; };
-	quint16 port() const { return m_port; };
+    const QHostAddress& addr() const { return m_ip; }
+    quint16 port() const { return m_port; }
 
 signals:
 	void unpluged();
@@ -57,7 +57,7 @@ public:
 	ClientSktTcp(QObject *parent=0);
 	~ClientSktTcp();
 
-	virtual QString name() const { return "TCP"; };
+    virtual QString name() const { return "TCP"; }
 
 protected:
 	virtual bool open();
@@ -82,7 +82,7 @@ public:
 	ClientSktUdp(QObject *parent=0);
 	~ClientSktUdp();
 
-	virtual QString name() const { return "UDP"; };
+    virtual QString name() const { return "UDP"; }
 
 protected:
 	virtual bool open();

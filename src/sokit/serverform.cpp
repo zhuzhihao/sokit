@@ -39,10 +39,10 @@ ServerForm::~ServerForm()
 void ServerForm::initConfig()
 {
 	QString sss(SET_SEC_SVR);
-	Setting::lord(sss+SET_KEY_CMBTA, SET_PFX_CMBITM, *m_ui.cmbTcpAddr, false);
-	Setting::lord(sss+SET_KEY_CMBUA, SET_PFX_CMBITM, *m_ui.cmbUdpAddr, false);
-	Setting::lord(sss+SET_KEY_CMBTP, SET_PFX_CMBITM, *m_ui.cmbTcpPort);
-	Setting::lord(sss+SET_KEY_CMBUP, SET_PFX_CMBITM, *m_ui.cmbUdpPort);
+    Setting::load(sss+SET_KEY_CMBTA, SET_PFX_CMBITM, *m_ui.cmbTcpAddr, false);
+    Setting::load(sss+SET_KEY_CMBUA, SET_PFX_CMBITM, *m_ui.cmbUdpAddr, false);
+    Setting::load(sss+SET_KEY_CMBTP, SET_PFX_CMBITM, *m_ui.cmbTcpPort);
+    Setting::load(sss+SET_KEY_CMBUP, SET_PFX_CMBITM, *m_ui.cmbUdpPort);
 
 	QString skl(SET_SEC_DIR); skl += SET_KEY_LOG;
 	skl = Setting::get(skl, SET_KEY_SVR, SET_VAL_LGSVR);
@@ -90,6 +90,8 @@ bool ServerForm::initForm()
 	connect(&m_udp, SIGNAL(dumpbin(const QString&,const char*,quint32)), this, SIGNAL(output(const QString&,const char*,quint32)));
 	connect(&m_udp, SIGNAL(countRecv(qint32)), this, SLOT(countRecv(qint32)));
 	connect(&m_udp, SIGNAL(countSend(qint32)), this, SLOT(countSend(qint32)));
+
+    connect(m_ui.editMarkingText, SIGNAL(textChanged(const QString)), this->getLogger(), SLOT(updateMarkTxt(const QString&)));
 
 	return true;
 }
