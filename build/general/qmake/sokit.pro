@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = sokit
 
-QT += gui network
+QT += gui network widgets
 CONFIG += debug_and_release build_all thread
 DEFINES += QT_NETWORK_LIB
 INCLUDEPATH += . ./../../../tmp ./../../../src/sokit
@@ -14,8 +14,8 @@ UI_DIR += ./../../../tmp
 RCC_DIR += ./../../../tmp
 
 win32 {
-    DEFINES += QT_LARGEFILE_SUPPORT
-    CONFIG += windows qt_static
+    DEFINES +=
+    CONFIG += windows
 
     QMAKE_CFLAGS_MT =-MT
     QMAKE_CFLAGS_MT_DBG =-MTd
@@ -99,7 +99,7 @@ FORMS += ../../../src/sokit/clientform.ui \
 TRANSLATIONS += ../../../src/sokit/sokit.ts
 RESOURCES += ../../../src/sokit/icons.qrc
 
-QMAKE_PRE_LINK = lupdate ./sokit.pro
+QMAKE_PRE_LINK =
 QMAKE_POST_LINK = lrelease ../../../src/sokit/sokit.ts -qm $$DESTDIR/sokit.lan
 
 win32 {
@@ -111,11 +111,11 @@ win32 {
 
    CONFIG(qt_static) {
         exists( $(QTDIR)/lib/static ) {
-	   QMAKE_LIBDIR_QT = $(QTDIR)/lib/static 
+           QMAKE_LIBDIR_QT = $(QTDIR)/lib/static
        }
     } else {
         exists( $(QTDIR)/lib/shared ) {
-	   QMAKE_LIBDIR_QT = $(QTDIR)/lib/shared 
+           QMAKE_LIBDIR_QT = $(QTDIR)/lib/shared
        }
     }
 }
